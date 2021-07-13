@@ -1,0 +1,71 @@
+
+interface shot {
+  x: number
+  y: number
+  hit: boolean
+};
+
+class seaGrid{
+  bool[][]: shotsFired
+
+}
+
+game state:
+  myGrid:
+    seaGrid
+    string[] sunkenShips
+    shot[] shotList
+  enemyGrid
+    seaGrid
+    string[] sunkenShips
+    shot[] shotList
+  bool myTurn
+
+
+seaGrid
+  grid: 9 rows of 9-column nullable bool
+  ship[]: ships
+
+displaying enemy grid:
+  water background
+  build table with let statements, have div centered in td, make undefined version div image a link to trigger confirmFire
+  div overlays with transparent backgrounds and on clicks
+  if grid spot is undefined, show no marker
+  if grid spot is false, show miss / white marker
+  if grid spot is true, show hit / red marker
+
+dispaying myGrid:
+  water background
+  div overlays for each ship
+  div overlays for hit markers as in enemy grid
+  
+
+shipCoordinate:
+  int x
+  int y
+  bool hit
+  constructor(int x, int y)
+    this.x = x;
+    this.y = y;
+    this.hit = false;
+
+interface ship:
+  shipCoordinate[] coordinates
+  bool sunk
+  string name
+  constructor(string name, int length, int initialX, int intialY, bool horizontalLayout)
+    this.name = name
+    var coordinates: shipCoordinate[];
+    for int i = 0; i < length; i++
+      var coordinate = new shipCoordinate(horizontalLayout ? initialX : (initialX + i), horizontalLayout ? (initialY + i) : initialY);
+      coordinates.push(coordinate);
+    this.coordinates = coordinates;
+    this.sunk = false;
+      
+
+Example ship:
+interface submarine extends ship
+  constructor(int initialX, int initialY, bool horizontalLayout)
+    super("Submarine",2, initialX, initialY, horizontalLayor)
+
+

@@ -1,0 +1,32 @@
+body {
+}
+
+.enemybg {
+  margin-left: auto;
+  margin-right: auto;
+  background-image: url(../../assets/paulhanaokaSQUAREsmall.jpg);
+}
+
+.shotDiv {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.selectedDiv {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.openShot {
+  width: 100%;
+  position: absolute;
+}
+
+.shotMarker {
+  width: 60%;
+  position:absolute;
+  top: 22%;
+  left: 22%;
+}

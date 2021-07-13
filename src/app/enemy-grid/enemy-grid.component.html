@@ -1,0 +1,12 @@
+<table class="enemybg">
+  <tr *ngFor="let seaRow of SeaGrid; let rowIndex=index">
+    <td *ngFor="let shot of seaRow; let shotIndex=index">
+      <div *ngIf="shot === undefined && (ShotSelected === false || !(SelectedX == shotIndex && SelectedY == rowIndex))" class="shotDiv">
+        <a href="javascript:void(0);" (click)="onSelectShot(shotIndex,rowIndex)"><img src="../../assets/transparentGif.gif" class="openShot" /></a>
+      </div>
+      <div *ngIf="shot === undefined && (ShotSelected === true && (SelectedX == shotIndex && SelectedY == rowIndex))" class="selectedDiv"><img src="../../assets/targetGif.gif" class="openShot" /></div>
+      <div *ngIf="shot !== undefined && shot === false" class="shotDiv"><img src="../../assets/missMarker.gif" class="shotMarker" /></div>
+      <div *ngIf="shot !== undefined && shot === true" class="shotDiv"><img src="../../assets/hitMarker.gif" class="shotMarker" /></div>
+    </td>
+  </tr> 
+</table>
