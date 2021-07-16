@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { BaseGrid } from '../base-grid/base-grid.component';
+import { IntersectionService } from '../intersection.service';
+import { RandomService } from '../random.service';
 
 @Component({
   selector: 'display-my-grid',
@@ -15,17 +17,17 @@ export class MyGrid extends BaseGrid implements OnInit {
   RotateShipToDisplay: boolean;
   ShipImage: string;
 
-  constructor() {
-    super();
+  constructor(public randomService: RandomService, public intersectionService: IntersectionService) {
+    super(randomService, intersectionService);
     this.ShotSelected = false;
     this.ShipToDisplay = undefined;
     this.RotateShipToDisplay = false;
-    this.AddShipToMyShips("Submarine", 2, 2, true);
     this.ShipImage = "";
+
   }
 
   ngOnInit() {
-
+    super.GenerateRandomPlacementOfShips();
   }
 
   GetShipToDisplay(xIndex: number, yIndex: number): string {
@@ -33,7 +35,7 @@ export class MyGrid extends BaseGrid implements OnInit {
       if (this.MyShips[i].ShipCoordinates[0].x === xIndex && this.MyShips[i].ShipCoordinates[0].y === yIndex) {
         this.ShipToDisplay = this.MyShips[i].Name;
         this.ShipImage = `../../assets/ship-${this.ShipToDisplay}.gif`;
-        this.RotateShipToDisplay = this.GetRotateShip(this.ShipToDisplay);
+        this.RotateShipToDisplay = this.RotateShip(this.ShipToDisplay);
         return this.ShipToDisplay;
       }
     }
@@ -43,10 +45,10 @@ export class MyGrid extends BaseGrid implements OnInit {
     return this.ShipToDisplay;
   }
 
-  GetRotateShip(shipName: string): boolean {
+  RotateShip(shipName: string): boolean {
     for (var i = 0; i < this.MyShips.length; i++) {
       if (this.MyShips[i].Name === shipName) {
-        return this.MyShips[i].HorizontalLayout;
+        return !(this.MyShips[i].HorizontalLayout);
       }
     }
 

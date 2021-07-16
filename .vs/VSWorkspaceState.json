@@ -3,11 +3,8 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\base-grid",
-    "\\src\\app\\my-grid",
     "\\src\\assets",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

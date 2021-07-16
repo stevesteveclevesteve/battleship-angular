@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { BaseGrid } from '../base-grid/base-grid.component';
+import { IntersectionService } from '../intersection.service';
+import { RandomService } from '../random.service';
 
 @Component({
   selector: 'display-enemy-grid',
@@ -12,13 +14,15 @@ export class EnemyGrid extends BaseGrid implements OnInit {
   SelectedX?: number;
   SelectedY?: number;
 
-  constructor() {
-    super();
+  constructor(public randomService: RandomService, public intersectionService: IntersectionService) {
+    super(randomService, intersectionService);
     this.ShotSelected = false;
+
+
   }
 
   ngOnInit() {
-
+    super.GenerateRandomPlacementOfShips();
   }
 
   onSelectShot(selectedX: number, selectedY: number) {

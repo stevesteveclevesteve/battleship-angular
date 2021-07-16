@@ -5,22 +5,31 @@ export class Ship {
   IsSunk: boolean;
   Name: string;
   HorizontalLayout: boolean;
+  Length: number;
 
   constructor(name: string, length: number, initialX: number, initialY: number, horizontalLayout: boolean) {
     this.Name = name;
+    this.Length = length;
     this.IsSunk = false;
-    this.ShipCoordinates = [];
     this.HorizontalLayout = horizontalLayout;
-    for (let i = 0; i < length; i++) {
+    this.ShipCoordinates = this.FillShipCoordinates(initialX, initialY, horizontalLayout);
+  }
+
+  FillShipCoordinates(initialX: number, initialY: number, horizontalLayout: boolean): Shot[] {
+    var shipCoordinates = [];
+    for (let i = 0; i < this.Length; i++) {
       var newShot: Shot = {
         x: (horizontalLayout ? initialX + i : initialX),
         y: (horizontalLayout ? initialY : initialY + i),
         hit: false
       }
-      this.ShipCoordinates[i] = newShot;
+      shipCoordinates[i] = newShot;
     }
+
+    return shipCoordinates;
   }
 }
+
 
 export class Submarine extends Ship {
   constructor(initialX: number, initialY: number, horizontalLayout: boolean) {

@@ -39,23 +39,36 @@ body {
 }
 
 .Destroyer {
-  background-image: url(../../assets/ship-destroyer.gif);
+  position: absolute;
+  width: 200%;
+  z-index: 0;
+  transform: translateX(0px) translateY(-22px);
 }
 
 .Cruiser {
-  background-image: url(../../assets/ship-cruiser.gif);
+  position: absolute;
+  width: 320%;
+  z-index: 0;
+  transform: translateX(0px) translateY(-22px);
 }
 
 .Battleship {
-  background-image: url(../../assets/ship-battleship.gif);
+  position: absolute;
+  width: 400%;
+  z-index: 0;
+  transform: translateX(0px) translateY(-25px);
 }
 
 .Carrier {
-  background-image: url(../../assets/ship-carrier.gif);
+  position: absolute;
+  width: 525%;
+  z-index: 0;
+  transform: translateX(-5px) translateY(-40px);
 }
 
 .explosion {
   position: relative;
   width: 60px;
   height: 60px;
+  z-index: 1;
 }
