@@ -8,4 +8,15 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'Battling Ships!';
+  targeted: boolean;
+  buttonImageUrl: string; 
+
+  constructor() {
+    this.targeted = false;
+    this.buttonImageUrl = '../assets/fireInactive.gif';
+  }
+
+  onTargeted(targeted: boolean) {
+    this.targeted = targeted;
+  }
 }

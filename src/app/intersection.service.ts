@@ -8,12 +8,12 @@ export class IntersectionService {
 
   constructor() { }
 
-  ShotContainedInShotArray(shotToCheck: Shot, shotArray: Shot[]): boolean {
+  ShotContainedInShotArray(shotToCheck: Shot, shotArray: Shot[]): number {
     for (var i = 0; i < shotArray.length; i++) {
       if (shotToCheck.x === shotArray[i].x && shotToCheck.y === shotArray[i].y)
-        return true;
+        return i;
     }
 
-    return false;
+    return -1;
   }
 }

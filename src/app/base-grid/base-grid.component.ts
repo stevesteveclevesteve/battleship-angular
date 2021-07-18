@@ -69,14 +69,13 @@ export abstract class BaseGrid implements OnInit {
 
   PlacementIsInvalid(shipToCheck: Ship): boolean {
     for (var k = 0; k < shipToCheck.Length; k++) {
-      console.log('x: ' + shipToCheck.ShipCoordinates[k].x + '  y: ' + shipToCheck.ShipCoordinates[k].y);
       if (shipToCheck.ShipCoordinates[k].x > 8 || shipToCheck.ShipCoordinates[k].y > 8)
         return true;
     }
 
     for (var i = 0; i < this.MyShips.length; i++) {
       for (var j = 0; j < shipToCheck.ShipCoordinates.length; j++)
-        if (this.intersectionService.ShotContainedInShotArray(shipToCheck.ShipCoordinates[j], this.MyShips[i].ShipCoordinates))
+        if (this.intersectionService.ShotContainedInShotArray(shipToCheck.ShipCoordinates[j], this.MyShips[i].ShipCoordinates) > -1)
           return true;
     }
 

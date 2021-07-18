@@ -28,6 +28,15 @@ export class Ship {
 
     return shipCoordinates;
   }
+
+  CheckIfShipIsSunk(): boolean {
+    for (let i = 0; i < this.Length; i++) {
+      if (this.ShipCoordinates[i].hit == false)
+        return false;
+    }
+
+    return true;
+  }
 }
 
 

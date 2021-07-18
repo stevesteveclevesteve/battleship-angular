@@ -21,4 +21,19 @@ table {
 .dashpanel {
     align-content: end;
     background-image: url(../assets/dashpanel.gif);
+    background-size: cover;
+}
+
+.right {
+    float: right;
+    width: 103px;
+    border: none;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }

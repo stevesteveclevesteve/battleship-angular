@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\assets",
-    "\\src\\environments"
+    "\\src\\app\\base-grid",
+    "\\src\\app\\enemy-grid",
+    "\\src\\app\\my-grid",
+    "\\src\\assets"
   ],
+  "SelectedNode": "\\src\\app\\intersection.service.ts",
   "PreviewInSolutionExplorer": false
 }
