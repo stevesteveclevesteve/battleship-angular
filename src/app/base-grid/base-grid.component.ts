@@ -1,6 +1,6 @@
 import { Shot } from '../shot';
 import { Battleship, Carrier, Cruiser, Destroyer, Ship, Submarine } from '../ship';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RandomService } from '../random.service';
 import { IntersectionService } from '../intersection.service';
 
@@ -12,13 +12,16 @@ export abstract class BaseGrid implements OnInit {
   SeaGrid: (boolean | undefined)[][];
   SunkenEnemyShips: [];
   ShotsFired: Shot[];
-  MyShips: Ship[]
+  MyShips: Ship[];
+  @Input() MyTurn: boolean;
+  @Output() myTurnOverFromPlayer = new EventEmitter<boolean>();
 
   constructor(public randomService: RandomService, public intersectionService: IntersectionService) {
     this.SeaGrid = [];
     this.SunkenEnemyShips = [];
     this.ShotsFired = [];
     this.MyShips = [];
+    this.MyTurn = false;
 
     for (let i = 0; i < 9; i++) {
       this.SeaGrid[i] = [];
@@ -80,6 +83,43 @@ export abstract class BaseGrid implements OnInit {
     }
 
     return false;
+  }
+
+  ShotFired(shotToCheck: Shot): Shot {
+    shotToCheck.hit = this.CheckIfAShipIsHit(shotToCheck);
+    this.ShotsFired.push(shotToCheck);
+    return shotToCheck;
+  }
+
+  CompleteTurn(shotToCheck: Shot, sender: string) {
+    this.MyTurn = false;
+
+    if (shotToCheck.hit && this.AllShipsAreSunk()) {
+      // display victory message {sender} wins
+    } else {
+      console.log("Sending completed turn message from " + sender);
+      this.myTurnOverFromPlayer.emit(sender === "Player");
+    }
+  }
+
+  CheckIfAShipIsHit(shotToCheck: Shot): boolean {
+
+    for (let i = 0; i < this.MyShips.length; i++) {
+      if (this.MyShips[i].IsSunk) {
+        continue;
+      }
+      var hitIndexOfMyShip: number = this.intersectionService.ShotContainedInShotArray(shotToCheck, this.MyShips[i].ShipCoordinates);
+      if (hitIndexOfMyShip > -1) {
+        this.MyShips[i].ShipCoordinates[hitIndexOfMyShip].hit = true;
+        this.MyShips[i].IsSunk = this.MyShips[i].CheckIfShipIsSunk();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  AllShipsAreSunk(): boolean {
+    return this.MyShips.findIndex(x => !x.IsSunk) === -1;
   }
 
   // Below method is not currently called.  Plan is to allow for custom placement of ships at start of game for my-grid if selected.

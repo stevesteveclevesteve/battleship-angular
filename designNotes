@@ -1,4 +1,12 @@
+7/21/2021
+still need to:
+  fix alignment of myship picture when first index is hit (shifts up)
+  messaging:
+    your turn / enemy turn
+    you win / enemy wins
 
+
+///////////////////////////////////////////////////////////////////
 interface shot {
   x: number
   y: number

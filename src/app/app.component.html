@@ -2,21 +2,21 @@
 <table>
   <tr>
     <td><img src="../assets/leftpanel.jpg" height="580px" /></td>
-    <td><display-enemy-grid #targetGrid (targeted)="onTargeted($event)"></display-enemy-grid></td>
+    <td><display-enemy-grid #targetGrid (targeted)="onTargeted($event)" (myTurnOverFromPlayer)="onTurnOver($event)" [MyTurn] ="userTurn"></display-enemy-grid></td>
     <td><img src="../assets/rightpanel.jpg" height="580px" /></td>
   </tr>
   <tr>
     <td></td>
     <td class="dashpanel">
-      <input *ngIf="!targeted" id="fireButtonInactive" type="image" src="../assets/fireInactive.gif" class="right clearfix" disabled="disabled" />
-      <input *ngIf="targeted" id="confirmFire" type="image" src="../assets/confirm.gif" class="right clearfix" (click)="targetGrid.fire()" />
+      <input *ngIf="!targeted || !userTurn" id="fireButtonInactive" type="image" src="../assets/fireInactive.gif" class="right clearfix" disabled="disabled" />
+      <input *ngIf="targeted && userTurn" id="confirmFire" type="image" src="../assets/confirm.gif" class="right clearfix" (click)="targetGrid.fire()" />
     </td>
     <td></td>
   </tr>
   <tr>
     <td><img src="../assets/leftpanel.jpg" height="580px" /></td>
     <td>
-      <display-my-grid></display-my-grid>
+      <display-my-grid (myTurnOverFromPlayer)="onTurnOver($event)" [MyTurn] ="cpuTurn"></display-my-grid>
     </td>
     <td><img src="../assets/rightpanel.jpg" height="580px" /></td>
   </tr>

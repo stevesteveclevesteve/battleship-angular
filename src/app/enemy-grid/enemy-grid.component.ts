@@ -17,12 +17,12 @@ export class EnemyGrid extends BaseGrid implements OnInit {
   SelectedY?: number;
 
   @Output() targeted = new EventEmitter<boolean>();
+  @Input() MyTurn: boolean;
 
   constructor(public randomService: RandomService, public intersectionService: IntersectionService) {
     super(randomService, intersectionService);
     this.ShotSelected = false;
-
-
+    this.MyTurn = false;
   }
 
   ngOnInit() {
@@ -30,6 +30,10 @@ export class EnemyGrid extends BaseGrid implements OnInit {
   }
 
   onSelectShot(selectedX: number, selectedY: number) {
+    if (!this.MyTurn) {
+      return;
+    }
+
     this.ShotSelected = true;
     this.SelectedX = selectedX;
     this.SelectedY = selectedY;
@@ -37,7 +41,7 @@ export class EnemyGrid extends BaseGrid implements OnInit {
   }
 
   fire() {
-    if (this.SelectedX && this.SelectedY) {
+    if (this.SelectedX !== undefined && this.SelectedX >= 0 && this.SelectedY !== undefined && this.SelectedY >= 0) {
 
       var shotToCheck: Shot = {
         x: this.SelectedX,
@@ -45,21 +49,13 @@ export class EnemyGrid extends BaseGrid implements OnInit {
         hit: false
       };
 
-      for (let i = 0; i < this.MyShips.length; i++) {
-        if (this.MyShips[i].IsSunk) {
-          continue;
-        }
-        var hitIndexOfMyShip: number = this.intersectionService.ShotContainedInShotArray(shotToCheck, this.MyShips[i].ShipCoordinates);
-        if (hitIndexOfMyShip > -1) {
-          shotToCheck.hit = true;
-          this.MyShips[i].ShipCoordinates[hitIndexOfMyShip].hit = true;
-          this.MyShips[i].IsSunk = this.MyShips[i].CheckIfShipIsSunk();
-        }
-      }
+      shotToCheck = this.ShotFired(shotToCheck);
 
       this.SeaGrid[this.SelectedY][this.SelectedX] = shotToCheck.hit;
-      this.ShotsFired.push(shotToCheck);
+
+      this.CompleteTurn(shotToCheck, "Player");
     }
+
   }
 
 
