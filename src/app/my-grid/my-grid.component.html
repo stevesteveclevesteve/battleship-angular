@@ -10,7 +10,7 @@
       <div *ngIf="ShipToDisplay !== '' && RotateShipToDisplay === false" class="norotate">
         <img src="{{ShipImage}}" class="{{ShipToDisplay}}" />
       </div>
-      <div *ngIf="shot === true">
+      <div *ngIf="shot === true" class="explosionDiv">
         <img src="../../assets/burningHit.gif" class="explosion" />
       </div>
     </td>
