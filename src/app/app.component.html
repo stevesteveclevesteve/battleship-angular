@@ -1,8 +1,12 @@
-<h1>{{ title }}</h1>
+<h1 class="font-effect-anaglyph">{{ title }}</h1>
+
 <table>
   <tr>
+    <td colspan="3"><span cdkOverlayOrigin #displayTurnChange="cdkOverlayOrigin"></span><span cdkOverlayOrigin #displayGameOver="cdkOverlayOrigin"></span></td>
+  </tr>
+  <tr>
     <td><img src="../assets/leftpanel.jpg" height="580px" /></td>
-    <td><display-enemy-grid #targetGrid (targeted)="onTargeted($event)" (myTurnOverFromPlayer)="onTurnOver($event)" [MyTurn] ="userTurn"></display-enemy-grid></td>
+    <td><display-enemy-grid #targetGrid (targeted)="onTargeted($event)" (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="userTurn"></display-enemy-grid></td>
     <td><img src="../assets/rightpanel.jpg" height="580px" /></td>
   </tr>
   <tr>
@@ -16,8 +20,44 @@
   <tr>
     <td><img src="../assets/leftpanel.jpg" height="580px" /></td>
     <td>
-      <display-my-grid (myTurnOverFromPlayer)="onTurnOver($event)" [MyTurn] ="cpuTurn"></display-my-grid>
+      <display-my-grid (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="cpuTurn"></display-my-grid>
     </td>
     <td><img src="../assets/rightpanel.jpg" height="580px" /></td>
   </tr>
 </table>
+
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="displayTurnChange" [cdkConnectedOverlayOpen]="showOverlay">
+  <div class="turnOverlay" [@slideOverlayInOut]>
+    <img src="../assets/transparentGif.gif" class="overlaySpacerGif" /><br />
+    <table class="overlayTableBackground">
+      <tr>
+        <td>
+          <img src="../assets/transparentGif.gif" /><br />
+          <img src="../assets/transparentGif.gif" /><br />
+          <h1><i>{{ (userTurn ? "YOUR" : "ENEMY'S") }} TURN TO FIRE</i></h1>
+          <img src="../assets/transparentGif.gif" /><br />
+          <img src="../assets/transparentGif.gif" />
+        </td>
+      </tr>
+    </table>
+    <img src="../assets/transparentGif.gif" class="overlaySpacerGif" /><br />
+  </div>
+</ng-template>
+
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="displayGameOver" [cdkConnectedOverlayOpen]="winnerIsPlayer !== undefined">
+  <div class="turnOverlay" [@slideOverlayInOut]>
+    <img src="../assets/transparentGif.gif" class="overlaySpacerGif" /><br />
+    <table class="overlayTableBackground">
+      <tr>
+        <td>
+          <img src="../assets/transparentGif.gif" /><br />
+          <img src="../assets/transparentGif.gif" /><br />
+          <h1>{{ (winnerIsPlayer ? "You Won!" : "Your enemy prevailed.") }}</h1>
+          <h3><span>Refresh page to play again.</span></h3><br />
+          <img src="../assets/transparentGif.gif" />
+        </td>
+      </tr>
+    </table>
+    <img src="../assets/transparentGif.gif" class="overlaySpacerGif" /><br />
+  </div>
+</ng-template>

@@ -15,6 +15,7 @@ export abstract class BaseGrid implements OnInit {
   MyShips: Ship[];
   @Input() MyTurn: boolean;
   @Output() myTurnOverFromPlayer = new EventEmitter<boolean>();
+  @Output() gameOverPlayerWon = new EventEmitter<boolean>();
 
   constructor(public randomService: RandomService, public intersectionService: IntersectionService) {
     this.SeaGrid = [];
@@ -95,9 +96,8 @@ export abstract class BaseGrid implements OnInit {
     this.MyTurn = false;
 
     if (shotToCheck.hit && this.AllShipsAreSunk()) {
-      // display victory message {sender} wins
+      this.gameOverPlayerWon.emit(sender === "Player");
     } else {
-      console.log("Sending completed turn message from " + sender);
       this.myTurnOverFromPlayer.emit(sender === "Player");
     }
   }
