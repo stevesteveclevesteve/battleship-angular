@@ -1,6 +1,6 @@
 h1 {
   color: #369;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Black Ops One', 'Bernard MT', Arial, Helvetica, sans-serif;
   font-size: 250%;
   align-content: center;
   text-align: center;
@@ -36,4 +36,25 @@ table {
     content: "";
     clear: both;
     display: table;
+}
+
+.turnOverlay { /* operates properly with pixel specification of width, but not how i want it to look */
+  width: 832px;
+  float: left;
+  text-align: center;
+}
+
+.overlayTableBackground {
+  background-color: gainsboro;
+  width: 100%;
+  padding: 0px 0px 0px 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border: 0px;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+.overlaySpacerGif {
+    height: 42px;
 }

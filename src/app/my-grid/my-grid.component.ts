@@ -70,7 +70,7 @@ export class MyGrid extends BaseGrid implements OnInit {
       thisShot = this.GetRandomShot();
     }
 
-    await new Promise(wait2secs => setTimeout(wait2secs, 2000));
+    await new Promise(wait3secs => setTimeout(wait3secs, 3000));
 
     thisShot = this.ShotFired(thisShot);
 
@@ -78,6 +78,8 @@ export class MyGrid extends BaseGrid implements OnInit {
     console.log(this.SeaGrid);
 
     this.SeaGrid[thisShot.y][thisShot.x] = thisShot.hit;
+
+    await new Promise(wait1pt5secs => setTimeout(wait1pt5secs, 1500));
 
     this.CompleteTurn(thisShot, "Enemy");
   }
