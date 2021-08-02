@@ -4,25 +4,23 @@
   <tr>
     <td colspan="3"><span cdkOverlayOrigin #displayTurnChange="cdkOverlayOrigin"></span><span cdkOverlayOrigin #displayGameOver="cdkOverlayOrigin"></span></td>
   </tr>
-  <tr>
+  <tr class="mapTr">
     <td><img src="../assets/leftpanel.jpg" height="580px" /></td>
-    <td><display-enemy-grid #targetGrid (targeted)="onTargeted($event)" (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="userTurn"></display-enemy-grid></td>
+    <td class="mapTd">
+      <div class="mapContainer" [@slide]="userTurn" style="max-height: 580px;">
+        <display-enemy-grid #targetGrid (targeted)="onTargeted($event)" (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="userTurn"></display-enemy-grid>
+        <display-my-grid (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="cpuTurn"></display-my-grid>
+      </div>
+    </td>
     <td><img src="../assets/rightpanel.jpg" height="580px" /></td>
   </tr>
   <tr>
     <td></td>
     <td class="dashpanel">
       <input *ngIf="!targeted || !userTurn" id="fireButtonInactive" type="image" src="../assets/fireInactive.gif" class="right clearfix" disabled="disabled" />
-      <input *ngIf="targeted && userTurn" id="confirmFire" type="image" src="../assets/confirm.gif" class="right clearfix" (click)="targetGrid.fire()" />
+      <input *ngIf="userTurn && targeted" id="confirmFire" type="image" src="../assets/confirm.gif" class="right clearfix" (click)="targetGrid.fire()" />
     </td>
     <td></td>
-  </tr>
-  <tr>
-    <td><img src="../assets/leftpanel.jpg" height="580px" /></td>
-    <td>
-      <display-my-grid (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="cpuTurn"></display-my-grid>
-    </td>
-    <td><img src="../assets/rightpanel.jpg" height="580px" /></td>
   </tr>
 </table>
 

@@ -18,6 +18,19 @@ table {
   border-spacing: 0px;
 }
 
+.mapTr {
+  overflow: hidden;
+}
+
+.mapTd {
+    overflow: hidden;
+}
+
+.mapContainer {
+  height: 100%;
+  width: 100%;
+}
+
 .dashpanel {
     align-content: end;
     background-image: url(../assets/dashpanel.gif);
