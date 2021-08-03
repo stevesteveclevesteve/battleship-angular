@@ -93,3 +93,36 @@ table {
 .overlaySpacerGif {
     height: 42px;
 }
+
+.statusTrMyShips {
+  background-image: url(../assets/statusGreen.jpg);
+  background-size: contain;
+  width: 450px;
+}
+
+.statusTrEnemyShips {
+  background-image: url(../assets/statusSepia.gif);
+  background-size: contain;
+  width: 450px;
+}
+
+
+.sunkDivBattleship {
+
+}
+
+.sunkDivCarrier {
+
+}
+
+.sunkDivSub {
+
+}
+
+.sunkDivCruiser {
+
+}
+
+.sunkDivDestroyer {
+
+}
