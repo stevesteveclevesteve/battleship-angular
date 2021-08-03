@@ -40,7 +40,7 @@ export class EnemyGrid extends BaseGrid implements OnInit {
     this.targeted.emit(this.ShotSelected);
   }
 
-  fire() {
+  async fire() {
     if (this.SelectedX !== undefined && this.SelectedX >= 0 && this.SelectedY !== undefined && this.SelectedY >= 0) {
 
       var shotToCheck: Shot = {
@@ -52,6 +52,8 @@ export class EnemyGrid extends BaseGrid implements OnInit {
       shotToCheck = this.ShotFired(shotToCheck);
 
       this.SeaGrid[this.SelectedY][this.SelectedX] = shotToCheck.hit;
+
+      await new Promise(wait1pt5secs => setTimeout(wait1pt5secs, 1500));
 
       this.CompleteTurn(shotToCheck, "Player");
     }
