@@ -1,7 +1,7 @@
 h1 {
   color: #222;
   font-family: 'Black Ops One', 'Bernard MT', Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  font-size: 300%;
   align-content: center;
   text-align: center;
 }
@@ -96,33 +96,37 @@ table {
 
 .statusTrMyShips {
   background-image: url(../assets/statusGreen.jpg);
-  background-size: contain;
+  background-size: cover;
   width: 450px;
 }
 
 .statusTrEnemyShips {
   background-image: url(../assets/statusSepia.gif);
-  background-size: contain;
+  background-size: cover;
   width: 450px;
 }
 
-
-.sunkDivBattleship {
-
+.sunkIndicatorRow {
+    height: 110px;
+    text-align: center;
+    font-size: 300%;
+    position: relative;
 }
 
-.sunkDivCarrier {
-
+.liftBattleship {
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
-.sunkDivSub {
-
-}
-
-.sunkDivCruiser {
-
-}
-
-.sunkDivDestroyer {
-
+.lowerSmall {
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
