@@ -32,7 +32,6 @@ export class MyGrid extends BaseGrid implements OnInit {
       const change = changes[propName];
       const oldValue = JSON.stringify(change.previousValue);
       const newValue = JSON.stringify(change.currentValue);
-      console.log(change);
       if (oldValue == "false" && newValue === "true")
         await this.IncomingEnemyShot();
     }
@@ -73,9 +72,6 @@ export class MyGrid extends BaseGrid implements OnInit {
     await new Promise(wait3secs => setTimeout(wait3secs, 3000));
 
     thisShot = this.ShotFired(thisShot);
-
-    console.log(this.ShotsFired);
-    console.log(this.SeaGrid);
 
     this.SeaGrid[thisShot.y][thisShot.x] = thisShot.hit;
 

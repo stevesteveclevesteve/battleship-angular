@@ -64,7 +64,6 @@ export abstract class BaseGrid implements OnInit {
 
   GetRandomPosition(shipToSet: Ship): Shot[] {
     shipToSet.HorizontalLayout = this.randomService.GetRandomInt(2) === 1 ? true : false;
-    console.log(shipToSet.Name + ' ' + shipToSet.HorizontalLayout);
     var firstPointLong = this.randomService.GetRandomInt(9 - shipToSet.Length);
     var firstPointShort = this.randomService.GetRandomInt(9);
 
