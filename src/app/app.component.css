@@ -1,7 +1,7 @@
 h1 {
-  color: #369;
+  color: #222;
   font-family: 'Black Ops One', 'Bernard MT', Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  font-size: 300%;
   align-content: center;
   text-align: center;
 }
@@ -16,6 +16,41 @@ table {
   border: 0px;
   border-collapse: collapse;
   border-spacing: 0px;
+}
+
+.mapTr {
+  overflow: hidden;
+}
+
+.mapTd {
+    overflow: hidden;
+}
+
+.mapContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.myShipsTd {
+  width: 450px;
+  overflow: hidden;
+  background-image: url(../assets/greenBackground.gif);
+  color: #222;
+  font-family: 'Black Ops One', 'Bernard MT', Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  align-content: center;
+  text-align: center;
+}
+
+.enemyShipsTd {
+  width: 450px;
+  overflow: hidden;
+  background-image: url(../assets/sepiaBackground.gif);
+  color: #222;
+  font-family: 'Black Ops One', 'Bernard MT', Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  align-content: center;
+  text-align: center;
 }
 
 .dashpanel {
@@ -39,7 +74,7 @@ table {
 }
 
 .turnOverlay { /* operates properly with pixel specification of width, but not how i want it to look */
-  width: 832px;
+  width: 1482px;
   float: left;
   text-align: center;
 }
@@ -57,4 +92,41 @@ table {
 
 .overlaySpacerGif {
     height: 42px;
+}
+
+.statusTrMyShips {
+  background-image: url(../assets/statusGreen.jpg);
+  background-size: cover;
+  width: 450px;
+}
+
+.statusTrEnemyShips {
+  background-image: url(../assets/statusSepia.gif);
+  background-size: cover;
+  width: 450px;
+}
+
+.sunkIndicatorRow {
+    height: 110px;
+    text-align: center;
+    font-size: 300%;
+    position: relative;
+}
+
+.liftBattleship {
+  margin: 0;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.lowerSmall {
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

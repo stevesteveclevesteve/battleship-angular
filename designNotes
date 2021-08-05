@@ -1,3 +1,11 @@
+8/5/2021
+implemented alternate display strategy
+
+INTRODUCED BUG: After around 12 hits or so by computer, player's ship grid gets distorted.  Maybe too much to render with call out to Google fonts API.
+Maybe replace flame hit indicator with more of the google font, or remove ship from grid when sunk / hide flames.
+
+
+//////////////////////////////////////////////////////////////////
 7/21/2021
 still need to:
   fix alignment of myship picture when first index is hit (shifts up)

@@ -2,11 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app",
-    "\\src\\app\\base-grid",
-    "\\src\\app\\enemy-grid",
-    "\\src\\app\\my-grid",
-    "\\src\\assets"
+    "\\src\\app"
   ],
+  "SelectedNode": "\\src\\styles.css",
   "PreviewInSolutionExplorer": false
 }

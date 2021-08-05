@@ -10,7 +10,7 @@ import { IntersectionService } from '../intersection.service';
 
 export abstract class BaseGrid implements OnInit {
   SeaGrid: (boolean | undefined)[][];
-  SunkenEnemyShips: [];
+  SunkenEnemyShips: string[];
   ShotsFired: Shot[];
   MyShips: Ship[];
   @Input() MyTurn: boolean;
@@ -112,6 +112,8 @@ export abstract class BaseGrid implements OnInit {
       if (hitIndexOfMyShip > -1) {
         this.MyShips[i].ShipCoordinates[hitIndexOfMyShip].hit = true;
         this.MyShips[i].IsSunk = this.MyShips[i].CheckIfShipIsSunk();
+        if (this.MyShips[i].IsSunk)
+          this.SunkenEnemyShips.push(this.MyShips[i].Name);
         return true;
       }
     }

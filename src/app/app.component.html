@@ -1,28 +1,44 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Black+Ops+One&effect=anaglyph|fire-animation&display=swap" />
+
 <h1 class="font-effect-anaglyph">{{ title }}</h1>
 
 <table>
   <tr>
     <td colspan="3"><span cdkOverlayOrigin #displayTurnChange="cdkOverlayOrigin"></span><span cdkOverlayOrigin #displayGameOver="cdkOverlayOrigin"></span></td>
   </tr>
-  <tr>
-    <td><img src="../assets/leftpanel.jpg" height="580px" /></td>
-    <td><display-enemy-grid #targetGrid (targeted)="onTargeted($event)" (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="userTurn"></display-enemy-grid></td>
-    <td><img src="../assets/rightpanel.jpg" height="580px" /></td>
+  <tr class="mapTr">
+    <td class="statusTrMyShips">
+      <table>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="myGrid.SunkenEnemyShips.indexOf('Battleship') > -1" class="font-effect-fire-animation"><span class="liftBattleship"><i>SUNK</i></span></span></td></tr>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="myGrid.SunkenEnemyShips.indexOf('Carrier') > -1" class="font-effect-fire-animation"><i>SUNK</i></span></td></tr>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="myGrid.SunkenEnemyShips.indexOf('Submarine') > -1" class="font-effect-fire-animation"><span class="lowerSmall"><i>SUNK</i></span></span></td></tr>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="myGrid.SunkenEnemyShips.indexOf('Cruiser') > -1" class="font-effect-fire-animation"><span class="lowerSmall"><i>SUNK</i></span></span></td></tr>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="myGrid.SunkenEnemyShips.indexOf('Destroyer') > -1" class="font-effect-fire-animation"><span class="lowerSmall"><i>SUNK</i></span></span></td></tr>
+      </table>
+    </td>
+    <td class="mapTd">
+      <div class="mapContainer" [@slide]="userTurn" style="max-height: 580px;">
+        <display-enemy-grid #targetGrid (targeted)="onTargeted($event)" (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="userTurn"></display-enemy-grid>
+        <display-my-grid #myGrid (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="cpuTurn"></display-my-grid>
+      </div>
+    </td>
+    <td class="statusTrEnemyShips">
+      <table>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="targetGrid.SunkenEnemyShips.indexOf('Battleship') > -1" class="font-effect-fire-animation"><span class="liftBattleship"><i>SUNK</i></span></span></td></tr>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="targetGrid.SunkenEnemyShips.indexOf('Carrier') > -1" class="font-effect-fire-animation"><i>SUNK</i></span></td></tr>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="targetGrid.SunkenEnemyShips.indexOf('Submarine') > -1" class="font-effect-fire-animation"><span class="lowerSmall"><i>SUNK</i></span></span></td></tr>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="targetGrid.SunkenEnemyShips.indexOf('Cruiser') > -1" class="font-effect-fire-animation"><span class="lowerSmall"><i>SUNK</i></span></span></td></tr>
+        <tr class="sunkIndicatorRow"><td><span *ngIf="targetGrid.SunkenEnemyShips.indexOf('Destroyer') > -1" class="font-effect-fire-animation"><span class="lowerSmall"><i>SUNK</i></span></span></td></tr>
+      </table>
+    </td>
   </tr>
   <tr>
-    <td></td>
+    <td class="myShipsTd"><i>YOUR FLEET</i></td>
     <td class="dashpanel">
       <input *ngIf="!targeted || !userTurn" id="fireButtonInactive" type="image" src="../assets/fireInactive.gif" class="right clearfix" disabled="disabled" />
-      <input *ngIf="targeted && userTurn" id="confirmFire" type="image" src="../assets/confirm.gif" class="right clearfix" (click)="targetGrid.fire()" />
+      <input *ngIf="userTurn && targeted" id="confirmFire" type="image" src="../assets/confirm.gif" class="right clearfix" (click)="targetGrid.fire()" />
     </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><img src="../assets/leftpanel.jpg" height="580px" /></td>
-    <td>
-      <display-my-grid (myTurnOverFromPlayer)="onTurnOver($event)" (gameOverPlayerWon)="showWinner($event)" [MyTurn]="cpuTurn"></display-my-grid>
-    </td>
-    <td><img src="../assets/rightpanel.jpg" height="580px" /></td>
+    <td class="enemyShipsTd"><i>ENEMY FLEET</i></td>
   </tr>
 </table>
 

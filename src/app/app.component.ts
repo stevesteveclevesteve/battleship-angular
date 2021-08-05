@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, style, animate, transition } from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,11 @@ import { trigger, style, animate, transition } from '@angular/animations';
       transition(':leave', [
         animate('200ms ease-out', style({transform: 'translateX(-100%)'}))
       ])
+    ]),
+    trigger('slide', [
+      state('true', style({ transform: 'translateX(0)' })),
+      state('false', style({ transform: 'translateY(-100%)' })),
+      transition('* => *', animate(300))
     ])
   ]
 })
