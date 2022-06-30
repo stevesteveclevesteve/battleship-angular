@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
 
+** No attempt was made to make this mobile-friendly... Just experimenting with things like component inheritance, parent-child interactions, etc.  Plus, it was a lot of fun!
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
